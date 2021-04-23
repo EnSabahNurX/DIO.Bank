@@ -16,19 +16,19 @@ namespace DIO.Bank
                 switch (userOpt)
                 {
                     case "1":
-                        // ListAccounts();
+                        ListAll();
                         break;
                     case "2":
                         AddConta();
                         break;
                     case "3":
-                        // Transfer();
+                        TransferValue();
                         break;
                     case "4":
-                        // Withdraw();
+                        Withdraw();
                         break;
                     case "5":
-                        // Deposit();
+                        Deposit();
                         break;
                     case "C":
                         Console.Clear();
@@ -41,8 +41,39 @@ namespace DIO.Bank
                 userOpt = GetUserOpt();
             }
 
-            Console.WriteLine("Obrigado por utilizar nossos serviços.");
+            Console.WriteLine("Thank you very much ");
             Console.ReadLine();
+        }
+
+        private static void TransferValue()
+        {
+
+            Console.Write("Type the origin account number: ");
+            int originAccountOrigin = int.Parse(Console.ReadLine());
+            Console.Write("Type the target account number: ");
+            int originAccountTarget = int.Parse(Console.ReadLine());
+            Console.Write("Type the amount to transfer: ");
+            double amount = double.Parse(Console.ReadLine());
+
+            listAccount[originAccountOrigin].Transfer(amount, listAccount[originAccountTarget]);
+        }
+
+        private static void Deposit()
+        {
+            Console.Write("Type the account number: ");
+            int accountIndex = int.Parse(Console.ReadLine());
+            Console.Write("Type the amount to deposit: ");
+            double amount = double.Parse(Console.ReadLine());
+            listAccount[accountIndex].Deposit(amount);
+        }
+
+        private static void Withdraw()
+        {
+            Console.Write("Type the account number: ");
+            int accountIndex = int.Parse(Console.ReadLine());
+            Console.Write("Type the amount to withdraw: ");
+            double amount = double.Parse(Console.ReadLine());
+            listAccount[accountIndex].Withdraw(amount);
         }
 
         private static string GetUserOpt()
@@ -80,13 +111,29 @@ namespace DIO.Bank
             Console.Write("Type the credit limit: ");
             double creditEntry = double.Parse(Console.ReadLine());
 
-            Account novaConta = new Account(accountType: (AccountType)accountTypeEntry,
+            Account newAccount = new Account(accountType: (AccountType)accountTypeEntry,
                                         balance: initialBalance,
                                         credit: creditEntry,
                                         name: nameEntry);
-
-            // listContas.Add(novaConta);
+            Console.WriteLine("\nThe account of {0} was added with success!\n", nameEntry);
+            listAccount.Add(newAccount);
         }
+        private static void ListAll()
+        {
+            Console.WriteLine("Listing all accounts:\n");
 
+            if (listAccount.Count == 0)
+            {
+                Console.WriteLine("No accounts added until now.\n");
+                return;
+            }
+
+            for (int i = 0; i < listAccount.Count; i++)
+            {
+                Account account = listAccount[i];
+                Console.Write("#{0} - ", i);
+                Console.WriteLine(account);
+            }
+        }
     }
 }

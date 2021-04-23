@@ -17,29 +17,34 @@ namespace DIO.Bank
             this.Credit = credit;
             this.Name = name;
         }
-        public bool Sacar(double valorSaque)
+        public bool Withdraw(double withdrawAmount)
         {
             // Validating balance
-            if (this.Balance - valorSaque < (this.Credit * -1))
+            if (this.Balance - withdrawAmount < (this.Credit * -1))
             {
                 Console.WriteLine("Insuficient Balance!");
                 return false;
             }
-            this.Balance -= valorSaque;
+            this.Balance -= withdrawAmount;
             Console.WriteLine("The current balance of {0} is {1}", this.Name, this.Balance);
             return true;
         }
 
-        public void Depositar(double valorDeposito)
+        public void Deposit(double depositAmount)
         {
-            this.Balance += valorDeposito;
+            this.Balance += depositAmount;
             Console.WriteLine("The current balance of {0} is {1}", this.Name, this.Balance);
         }
-        public void Transferir(double valorTransferencia, Account contaDestino)
+        public void Transfer(double transferAmount, Account targetAccount)
         {
-            if (this.Sacar(valorTransferencia))
+            if (this.Withdraw(transferAmount))
             {
-                contaDestino.Depositar(valorTransferencia);
+                targetAccount.Deposit(transferAmount);
+                Console.WriteLine("Transaction was successfull!")
+            }
+            else
+            {
+                Console.WriteLine("Sorry, not enough balance!")
             }
         }
         public override string ToString()
