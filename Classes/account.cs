@@ -40,11 +40,11 @@ namespace DIO.Bank
             if (this.Withdraw(transferAmount))
             {
                 targetAccount.Deposit(transferAmount);
-                Console.WriteLine("Transaction was successfull!")
+                Console.WriteLine("Transaction was successfull!");
             }
             else
             {
-                Console.WriteLine("Sorry, not enough balance!")
+                Console.WriteLine("Sorry, not enough balance!");
             }
         }
         public override string ToString()
