@@ -10,12 +10,12 @@ namespace DIO.Bank
         private double Credit { get; set; }
         private string Name { get; set; }
         // Methods
-        public Account(AccountType accountType, double balance, double credit, string nome)
+        public Account(AccountType accountType, double balance, double credit, string name)
         {
             this.AccountType = accountType;
             this.Balance = balance;
             this.Credit = credit;
-            this.Name = nome;
+            this.Name = name;
         }
         public bool Sacar(double valorSaque)
         {

@@ -16,19 +16,19 @@ namespace DIO.Bank
                 switch (userOpt)
                 {
                     case "1":
-                        ListAccounts();
+                        // ListAccounts();
                         break;
                     case "2":
                         AddConta();
                         break;
                     case "3":
-                        Transfer();
+                        // Transfer();
                         break;
                     case "4":
-                        Withdraw();
+                        // Withdraw();
                         break;
                     case "5":
-                        Deposit();
+                        // Deposit();
                         break;
                     case "C":
                         Console.Clear();
@@ -63,6 +63,29 @@ namespace DIO.Bank
             string userOpt = Console.ReadLine().ToUpper();
             Console.WriteLine();
             return userOpt;
+        }
+        private static void AddConta()
+        {
+            Console.WriteLine("Add a new account");
+
+            Console.Write("Type \"1\" to natural personal account and \"2\" to company account: ");
+            int accountTypeEntry = int.Parse(Console.ReadLine());
+
+            Console.Write("Type the customer name: ");
+            string nameEntry = Console.ReadLine();
+
+            Console.Write("Type the initial balance: ");
+            double initialBalance = double.Parse(Console.ReadLine());
+
+            Console.Write("Type the credit limit: ");
+            double creditEntry = double.Parse(Console.ReadLine());
+
+            Account novaConta = new Account(accountType: (AccountType)accountTypeEntry,
+                                        balance: initialBalance,
+                                        credit: creditEntry,
+                                        name: nameEntry);
+
+            // listContas.Add(novaConta);
         }
 
     }
